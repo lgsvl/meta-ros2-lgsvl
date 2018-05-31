@@ -5,4 +5,6 @@ EXTENDPRAUTO_append = "r2d21"
 
 RDEPENDS_${PN}_append = " \
     packagegroup-ros2-world \
+    cv-bridge \
+    python3-opencv \
 "
