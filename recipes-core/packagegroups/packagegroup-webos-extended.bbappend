@@ -7,4 +7,5 @@ RDEPENDS_${PN}_append = " \
     packagegroup-ros2-world \
     cv-bridge \
     python3-opencv \
+    ros2-web-bridge \
 "
