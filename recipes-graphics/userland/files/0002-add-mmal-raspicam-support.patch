@@ -1,0 +1,89 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 516310d..4bacb07 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -8,6 +8,13 @@ SET(PROJECT_VER_PATCH 0)
+ SET(PROJECT_VER "${PROJECT_VER_MAJOR}.${PROJECT_VER_MINOR}.${PROJECT_VER_PATCH}")
+ SET(PROJECT_APIVER "${PROJECT_VER}")
+ 
++if(ARM64)
++   set(BUILD_MMAL FALSE)
++   set(BUILD_MMAL_APPS FALSE)
++else()
++   set(BUILD_MMAL TRUE)
++   set(BUILD_MMAL_APPS TRUE)
++endif()
+ set(vmcs_root ${PROJECT_SOURCE_DIR})
+ get_filename_component(VIDEOCORE_ROOT . ABSOLUTE)
+ 
+@@ -57,10 +64,15 @@ add_subdirectory(interface/vmcs_host)
+ add_subdirectory(interface/vchiq_arm)
+ 
+ #add_subdirectory(opensrc/tools/lua)
++if(BUILD_MMAL)
++   include_directories(interface/mmal)
++   add_subdirectory(interface/mmal)
++   add_subdirectory(containers)
++endif()
+ 
+ # VidTex supports Android and Linux
+ if(BUILD_MMAL_APPS)
+-add_subdirectory(host_applications/android/apps/vidtex)
++#add_subdirectory(host_applications/android/apps/vidtex)
+ endif(BUILD_MMAL_APPS)
+ 
+ if(NOT ARM64)
+@@ -100,7 +112,7 @@ include_directories("${PROJECT_BINARY_DIR}")
+ include(FindPkgConfig QUIET)
+ if(PKG_CONFIG_FOUND)
+ 	# Produce a pkg-config file
+-	foreach(PCFILE bcm_host.pc vg.pc brcmvg.pc openmaxil.pc)
++	foreach(PCFILE bcm_host.pc vg.pc brcmvg.pc openmaxil.pc vcsm.pc mmal.pc)
+ 		configure_file("pkgconfig/${PCFILE}.in" "${PCFILE}" @ONLY)
+ 		install(FILES       "${CMAKE_CURRENT_BINARY_DIR}/${PCFILE}"
+ 			DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig")
+diff --git a/host_applications/linux/CMakeLists.txt b/host_applications/linux/CMakeLists.txt
+index 5b0966b..f4153b4 100644
+--- a/host_applications/linux/CMakeLists.txt
++++ b/host_applications/linux/CMakeLists.txt
+@@ -2,4 +2,7 @@
+ 
+ if(NOT ARM64)
+    add_subdirectory(libs/bcm_host)
++   add_subdirectory(libs/sm)
++   #add_subdirectory(apps/raspicam)
+ endif()
++add_subdirectory(libs/debug_sym)
+diff --git a/pkgconfig/mmal.pc.in b/pkgconfig/mmal.pc.in
+new file mode 100644
+index 0000000..37d344c
+--- /dev/null
++++ b/pkgconfig/mmal.pc.in
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=${exec_prefix}/lib
++includedir=${prefix}/include
++
++Name: MMAL
++Description: Multi-Media Abstraction Layer library for RPi
++Version: 1
++Requires: vcsm
++Libs: -L${libdir} -lmmal -lmmal_core -lmmal_util -lmmal_vc_client -lbcm_host
++Cflags: -I${includedir}
+diff --git a/pkgconfig/vcsm.pc.in b/pkgconfig/vcsm.pc.in
+new file mode 100644
+index 0000000..b12c56f
+--- /dev/null
++++ b/pkgconfig/vcsm.pc.in
+@@ -0,0 +1,10 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=${exec_prefix}/lib
++includedir=${prefix}/include
++
++Name: VCSM
++Description: VideoCore Shared Memory library for RPi
++Version: 1
++Libs: -L${libdir} -lvcsm -lvcos
++Cflags: -I${includedir}
