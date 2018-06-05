@@ -9,13 +9,14 @@ DEPENDS = " \
     rosidl-generator-c \
     rcutils \
 "
+
 SRC_URI = "git://github.com/RobotWebTools/ros2-web-bridge.git;protocol=https;branch=develop;"
 SRCREV = "91e3ea17328d9f9b59a94fbe223f4970d276a7d7"
 S = "${WORKDIR}/git"
 
 do_install () {
     export HOME=${WORKDIR}
-    export AMENT_PREFIX_PATH=/usr
+    export AMENT_PREFIX_PATH="${STAGING_EXECPREFIXDIR}"
     export CFLAGS="$CFLAGS -fpermissive"
     export CXXFLAGS="$CXXFLAGS -fpermissive"
 
@@ -25,28 +26,36 @@ do_install () {
     # clear local cache prior to each compile
     ${STAGING_BINDIR_NATIVE}/npm cache clear
 
-    # Compile and install node modules in source directory
-    ${STAGING_BINDIR_NATIVE}/npm install --production --unsafe-perm --arch=${TARGET_ARCH}
+    case ${TARGET_ARCH} in
+        i?86) targetArch="ia32"
+            echo "targetArch = 32"
+            ;;
+        x86_64) targetArch="x64"
+            echo "targetArch = 64"
+            ;;
+        arm) targetArch="arm"
+            ;;
+        aarch64) targetArch="arm64"
+            ;;
+        mips) targetArch="mips"
+            ;;
+        sparc) targetArch="sparc"
+            ;;
+        *) echo "unknown architecture"
+           exit 1
+            ;;
+    esac
 
-    install -d ${D}${libdir}/node_modules/ros2-web-bridge/
-    install -m 0644 ${S}/index.js ${D}${libdir}/node_modules/ros2-web-bridge/index.js
-    install -m 0644 ${S}/README.md ${D}${libdir}/node_modules/ros2-web-bridge/README.md
-    install -m 0644 ${S}/package.json ${D}${libdir}/node_modules/ros2-web-bridge/package.json
+    # Compile and install
+    ${STAGING_BINDIR_NATIVE}/npm install --production --unsafe-perm --arch=${targetArch} --target-arch=${targetArch} --verbose -g --prefix=${D}${prefix}
 
-    cp -r ${S}/examples/ ${D}${libdir}/node_modules/ros2-web-bridge/
-    cp -r ${S}${base_libdir} ${D}${libdir}/node_modules/ros2-web-bridge/
-    cp -r ${S}/node_modules/ ${D}${libdir}/node_modules/ros2-web-bridge/
-
+    rm -fr ${D}${libdir}/node_modules/ros2-web-bridge/npm-pack.sh
     rm -fr ${D}${libdir}/node_modules/ros2-web-bridge/node_modules/rclnodejs/test/
     rm -fr ${D}${libdir}/node_modules/ros2-web-bridge/node_modules/rclnodejs/scripts
     rm -fr ${D}${libdir}/node_modules/ros2-web-bridge/node_modules/rclnodejs/src/third_party/spdlog
 
     install -m 0777 -d ${D}${libdir}/node_modules/ros2-web-bridge/node_modules/rclnodejs/generated
-
-    install -d ${D}${libdir}/node_modules/ros2-web-bridge/bin/
-    install -m 0755 ${S}/bin/rosbridge.js ${D}${libdir}/node_modules/ros2-web-bridge/bin/
 }
 
-FILES_${PN} = "${libdir}/node_modules/ros2-web-bridge/ \
-"
+FILES_${PN} += "${prefix}"
 
