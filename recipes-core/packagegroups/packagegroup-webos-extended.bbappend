@@ -7,7 +7,7 @@ RDEPENDS_${PN}_append = " \
     packagegroup-ros2-world \
     cv-bridge \
     python3-opencv \
-    ros2-web-bridge \
-	packagegroup-duckietown2 \
-	packagegroup-duckietown-dependencies \
+    ros2-joy \
+    packagegroup-duckietown2 \
+    packagegroup-duckietown-dependencies \
 "

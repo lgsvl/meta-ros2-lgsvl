@@ -8,6 +8,6 @@ PACKAGES = "${PN}"
 
 RDEPENDS_${PN} = "\
 	python3-smbus2 \
-	python3-yaml \
+	python3-pyyaml \
 	python3-picamera \
 "

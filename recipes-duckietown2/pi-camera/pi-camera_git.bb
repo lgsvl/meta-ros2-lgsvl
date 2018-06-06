@@ -5,7 +5,7 @@ LICENSE = "CLOSED"
 inherit ament-python
 
 RDEPENDS_${PN} = " \
-	python3-yaml \
+	python3-pyyaml \
 	python3-picamera \
     rclpy \
 	builtin-interfaces \
