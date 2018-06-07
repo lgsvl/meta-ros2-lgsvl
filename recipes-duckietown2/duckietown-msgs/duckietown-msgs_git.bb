@@ -8,6 +8,9 @@ DEPENDS = " \
 	builtin-interfaces \
 	rosidl-default-runtime \
 	rosidl-typesupport-c \
+    ros2-std-msgs \
+    ros2-geometry-msgs \
+    ros2-sensor-msgs \
 "
 
 RDEPENDS_${PN} = " \
