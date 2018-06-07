@@ -19,7 +19,7 @@ RDEPENDS_${PN} = " \
 	ros2-sensor-msgs\
 "
 
-SRCREV = "cd972e2d348f151c31e505c612d995f2de5c7584"
+SRCREV = "c930b0fca1ae43649718a2e45a9caefb322a8f66"
 SRC_URI = " \
 	git://git@auto-gitlab.lgsvl.net/duckietown/duckietown2.git;protocol=ssh;subpath=00-infrastructure/duckietown_msgs \
 " 

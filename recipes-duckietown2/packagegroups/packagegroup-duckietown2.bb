@@ -7,12 +7,13 @@ inherit packagegroup
 PACKAGES = "${PN}"
 
 RDEPENDS_${PN} = "\
-	duckietown \
-	duckietown-msgs \
-	adafruit-drivers \
-	dagu-car \
-	pi-camera \
-	joy-mapper \
+    duckietown \
+    duckietown-msgs \
+    adafruit-drivers \
+    dagu-car \
+    pi-camera \
+    joy-mapper \
+    object-classifier \
 "
 
 	
