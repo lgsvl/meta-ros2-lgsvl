@@ -9,6 +9,7 @@ PACKAGES = "${PN}"
 RDEPENDS_${PN} = "\
     duckietown \
     duckietown-msgs \
+    duckietown-demos \
     adafruit-drivers \
     dagu-car \
     pi-camera \
