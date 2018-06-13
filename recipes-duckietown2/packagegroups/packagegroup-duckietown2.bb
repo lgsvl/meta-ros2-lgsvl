@@ -15,6 +15,5 @@ RDEPENDS_${PN} = "\
     pi-camera \
     joy-mapper \
     object-classifier \
+    obstacle-avoidance \
 "
-
-	
