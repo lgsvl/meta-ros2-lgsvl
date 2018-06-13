@@ -1,6 +1,7 @@
 #!/bin/sh
 
 export AMENT_PREFIX_PATH=/usr
+export ROS_DOMAIN_ID=10     # arbitrary fixed number 0-255 to segregate within network
 export PYTHONUNBUFFERED=1
 export PYTHONOPTIMIZE=2
 
