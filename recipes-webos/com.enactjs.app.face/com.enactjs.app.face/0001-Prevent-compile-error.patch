@@ -1,0 +1,12 @@
+diff --git a/src/App/App.less b/src/App/App.less
+index 8804319..b95e902 100644
+--- a/src/App/App.less
++++ b/src/App/App.less
+@@ -40,7 +40,6 @@
+ 		.head {
+ 			will-change: transform;
+ 			transition: 0.5s transform ease-in-out;
+-			transform: rotate(calc(var(--face-wheel-velocity, 0) * var(--face-wheel-velocity-right, 0) * 15deg));
+ 			transform-origin: center bottom;
+ 		}
+ 	}
