@@ -1,0 +1,13 @@
+diff --git a/src/bootd/sequencer/DefaultBootSequencer.cpp b/src/bootd/sequencer/DefaultBootSequencer.cpp
+index 4fbe9dd..96b2112 100644
+--- a/src/bootd/sequencer/DefaultBootSequencer.cpp
++++ b/src/bootd/sequencer/DefaultBootSequencer.cpp
+@@ -61,7 +61,7 @@ void DefaultBootSequencer::doBoot()
+ void DefaultBootSequencer::launchTargetApp()
+ {
+     Application application;
+-    application.setAppId("bareapp");
++    application.setAppId("com.enactjs.app.face");
+ 
+     for (int i = 0; i < COUNT_LAUNCH_RETRY; i++) {
+         if (ApplicationManager::instance()->launch(&m_bootManager, application)) {
