@@ -1,0 +1,58 @@
+diff --git a/lib/bridge.js b/lib/bridge.js
+index 80d0069..893d012 100644
+--- a/lib/bridge.js
++++ b/lib/bridge.js
+@@ -218,8 +218,11 @@ class Bridge extends EventEmitter {
+         client.sendRequest(command.args.request, (response) => {
+           let serviceResponse =
+             {op: 'service_response', service: command.service, values: response, id: command.id, result: true};
+-
+-          this._ws.send(JSON.stringify(serviceResponse));
++          try {
++            this._ws.send(JSON.stringify(serviceResponse));
++          } catch (e) {
++            debug(`Exception caught in Bridge._registerOpMap(): ${e}`);
++          }
+         });
+       }
+     });
+@@ -233,8 +236,12 @@ class Bridge extends EventEmitter {
+           let id = this._generateRandomId();
+           let serviceRequest = {op: 'call_service', service: command.service, args: request, id: id};
+           this._servicesResponse.set(id, response);
+-          this._ws.send(JSON.stringify(serviceRequest));
+         });
++        try {
++          this._ws.send(JSON.stringify(serviceRequest));
++        } catch (e) {
++          debug(`Exception caught in Bridge._registerOpMap(): ${e}`);
++        }
+     });
+ 
+     this._registerOpMap('service_response', (command) => {
+@@ -283,7 +290,11 @@ class Bridge extends EventEmitter {
+   _sendSubscriptionResponse(topicName, message) {
+     debug('Send message to subscription.');
+     let response = {op: 'publish', topic: topicName, msg: message};
+-    this._ws.send(JSON.stringify(response));
++    try {
++      this._ws.send(JSON.stringify(response));
++    } catch (e) {
++      debug(`Exception caught in Bridge._sendSubscriptionResponse(): ${e}`);
++    }
+   }
+ 
+   _sendBackOperationStatus(error) {
+@@ -296,7 +307,11 @@ class Bridge extends EventEmitter {
+       command = {op: 'set_level', level: 'none'};
+     }
+     debug('Response: ' + JSON.stringify(command));
+-    this._ws.send(JSON.stringify(command));
++    try {
++      this._ws.send(JSON.stringify(command));
++    } catch (e) {
++      debug(`Exception caught in Bridge._sendBackOperationStatus(): ${e}`);
++    }
+   }
+ 
+   _validateTopicOrService(name) {

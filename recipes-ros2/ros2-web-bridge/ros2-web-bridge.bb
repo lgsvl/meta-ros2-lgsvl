@@ -14,6 +14,9 @@ SRC_URI = "git://github.com/RobotWebTools/ros2-web-bridge.git;protocol=https;bra
 SRCREV = "91e3ea17328d9f9b59a94fbe223f4970d276a7d7"
 S = "${WORKDIR}/git"
 
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+SRC_URI_append = " file://0001-catch-bridge-exceptions.patch"
+
 do_install () {
     export HOME=${WORKDIR}
     export AMENT_PREFIX_PATH="${STAGING_EXECPREFIXDIR}"
