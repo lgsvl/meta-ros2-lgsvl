@@ -12,4 +12,5 @@ RDEPENDS_${PN}_append = " \
     com.enactjs.app.face \
     packagegroup-duckietown2 \
     packagegroup-duckietown-dependencies \
+    com.palm.service.devmode \
 "
