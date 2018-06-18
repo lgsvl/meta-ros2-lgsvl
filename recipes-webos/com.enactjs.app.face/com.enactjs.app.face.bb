@@ -14,16 +14,15 @@ S = "${WORKDIR}/git"
 
 SRC_URI = " \
     ${ENACTJS_GIT_REPO}/face.git;nobranch=1; \
-    file://0001-Prevent-compile-error.patch \
 "
 
 PV = "0.1.0"
-SRCREV = "0c5d10527842448e896ce78abbd59d2dfc8bee5d"
+SRCREV = "f95295137ff96c47ff6cf738b260a06fbf9ac20f"
 
 # NOTE: We only need to bump PR if we change something OTHER than
 # PV, SRCREV or the require statement above.
 
-PR = "r1"
+PR = "r2"
 
 WEBOS_ENACTJS_PACK_OPTS = "--production"
 WEBOS_ENACTJS_SHRINKWRAP_OVERRIDE = "false"
