@@ -1,6 +1,6 @@
 SUMMARY = "Duckietown demos ROS2 package containing demo launch files"
 
-LICENSE = "GPLv2"
+LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=fe8b75cf0aba647401e1038bcd69ee74"
 
 inherit ament-python

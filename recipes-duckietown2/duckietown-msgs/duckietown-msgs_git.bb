@@ -1,6 +1,6 @@
 SUMMARY = "Duckietown package for ROS2. Provides helper functions used in the Duckietown project."
 
-LICENSE = "GPLv2"
+LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=fe8b75cf0aba647401e1038bcd69ee74"
 
 inherit ament pythonpath-insane

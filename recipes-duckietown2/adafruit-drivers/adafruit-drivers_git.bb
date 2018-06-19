@@ -1,7 +1,7 @@
 SUMMARY = "Adafruit package for ROS2."
 
-LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=fe8b75cf0aba647401e1038bcd69ee74"
+LICENSE = "GPLv3"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=1e7b3bcc2e271699c77c769685058cbe"
 
 inherit setuptools3
 
@@ -9,7 +9,7 @@ RDEPENDS_${PN} = " \
     python3-smbus2 \
 "
 
-SRCREV = "f68222e42319864e1b8553cf1429c025588a6dfb"
+SRCREV = "d207167fa507eda6f9cb8f2c02627aa2dec73d2a"
 SRC_URI = " \
     git://git@auto-gitlab.lgsvl.net/duckietown/duckietown2.git;protocol=ssh;subpath=05-teleop/adafruit_drivers \
 "
