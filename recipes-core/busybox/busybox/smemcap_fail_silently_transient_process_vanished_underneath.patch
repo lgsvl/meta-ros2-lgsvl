@@ -1,0 +1,28 @@
+--- busybox-1.20.2/procps/smemcap.c	2014-08-04 10:40:25.502560651 -0700
++++ busybox-1.20.2/procps/smemcap.c.patched	2014-08-04 13:59:43.178144116 -0700
+@@ -66,14 +66,23 @@ static void archivefile(const char *path
+ 	struct stat s;
+ 
+ 	/* buffer the file */
+-	fd = xopen(path, O_RDONLY);
++	fd = open(path, O_RDONLY);
++	if (-1 == fd) {
++		// We fail silently (but don't abort) for transient processes which died between directory listing and traversal
++		return;
++	}
+ 	do {
+ 		cur = xzalloc(sizeof(*cur));
+ 		*prev = cur;
+ 		prev = &cur->next;
+ 		r = full_read(fd, cur->data, TAR_BLOCK_SIZE);
+-		if (r > 0)
++		if (r > 0) {
+ 			size += r;
++		} else if (-1 == r) {
++			// We fail silently (but don't abort) for transient processes which died between directory listing and traversal
++			close(fd);
++			return;
++		}
+ 	} while (r == TAR_BLOCK_SIZE);
+ 
+ 	/* write archive header */
