@@ -17,6 +17,8 @@ S = "${WORKDIR}/git"
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 SRC_URI_append = " file://0001-catch-bridge-exceptions.patch"
 
+TARGET_CFLAGS += "-fpic"
+
 do_install () {
     export HOME=${WORKDIR}
     export AMENT_PREFIX_PATH="${STAGING_EXECPREFIXDIR}"
