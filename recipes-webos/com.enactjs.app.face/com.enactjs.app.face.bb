@@ -17,7 +17,7 @@ SRC_URI = " \
 "
 
 PV = "0.1.0"
-SRCREV = "5c62e827252f80aac0a575a6faaa6843753c12b0"
+SRCREV = "f8c1110022d687510586ebc90dd0c374e3cd04e4"
 
 # NOTE: We only need to bump PR if we change something OTHER than
 # PV, SRCREV or the require statement above.
