@@ -1,6 +1,6 @@
 # Copyright (c) 2018 LG Electronics, Inc.
 
-EXTENDPRAUTO_append = "r2d21"
+EXTENDPRAUTO_append = "ros2-lgsvl1"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
 

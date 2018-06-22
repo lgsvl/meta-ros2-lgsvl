@@ -8,4 +8,4 @@
 PV = "1.0.7"
 SRCREV = "6289e835603bf407f7e75e9fabc8649529f85131"
 
-EXTENDPRAUTO_append = "r2d21"
+EXTENDPRAUTO_append = "ros2-lgsvl1"
