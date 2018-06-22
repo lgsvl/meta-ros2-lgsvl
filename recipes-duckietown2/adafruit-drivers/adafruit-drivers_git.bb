@@ -11,7 +11,7 @@ RDEPENDS_${PN} = " \
 
 SRCREV = "d207167fa507eda6f9cb8f2c02627aa2dec73d2a"
 SRC_URI = " \
-    git://git@auto-gitlab.lgsvl.net/duckietown/duckietown2.git;protocol=ssh;subpath=05-teleop/adafruit_drivers \
+    git://github.com/lgsvl/duckietown2.git;subpath=05-teleop/adafruit_drivers \
 "
 
 S="${WORKDIR}/adafruit_drivers"

@@ -11,7 +11,7 @@ RDEPENDS_${PN} = " \
 
 SRCREV = "6dd0652f9900ec826550f16e5a4384195b48404d"
 SRC_URI = " \
-    git://git@auto-gitlab.lgsvl.net/duckietown/duckietown2.git;protocol=ssh;subpath=70-convenience-packages/duckietown_demos  \
+    git://github.com/lgsvl/duckietown2.git;subpath=70-convenience-packages/duckietown_demos  \
 "
 
 S="${WORKDIR}/duckietown_demos"

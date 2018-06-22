@@ -12,7 +12,7 @@ RDEPENDS_${PN} = " \
 
 SRCREV = "f68222e42319864e1b8553cf1429c025588a6dfb"
 SRC_URI = " \
-    git://git@auto-gitlab.lgsvl.net/duckietown/duckietown2.git;protocol=ssh;subpath=80-deep-learning/object_classifier  \
+    git://github.com/lgsvl/duckietown2.git;subpath=80-deep-learning/object_classifier  \
 "
 
 S="${WORKDIR}/object_classifier"

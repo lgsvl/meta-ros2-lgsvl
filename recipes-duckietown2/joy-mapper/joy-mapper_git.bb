@@ -15,7 +15,7 @@ RDEPENDS_${PN} = " \
 
 SRCREV = "ea9dcbb2132fb4309d62f13f61cb8ee88c19f281"
 SRC_URI = " \
-    git://git@auto-gitlab.lgsvl.net/duckietown/duckietown2.git;protocol=ssh;subpath=05-teleop/joy_mapper \
+    git://github.com/lgsvl/duckietown2.git;subpath=05-teleop/joy_mapper \
 "
 
 S="${WORKDIR}/joy_mapper"
