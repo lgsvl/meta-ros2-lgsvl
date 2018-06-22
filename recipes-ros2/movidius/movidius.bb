@@ -1,5 +1,5 @@
 SUMMARY = "Intel Movidius Neural Compute SDK"
-LICENSE = "CUSTOM"
+LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=05b1939845b405db6b10a8050e4aa40c"
 
 SRC_URI = "git://github.com/movidius/ncsdk.git;protocol=https;"
