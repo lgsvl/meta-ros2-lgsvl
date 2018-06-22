@@ -1,7 +1,7 @@
 SUMMARY = "Duckietown demos ROS2 package containing demo launch files"
 
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=fe8b75cf0aba647401e1038bcd69ee74"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=e0cab6c37b6a5e30363d6546a6bccfb5"
 
 inherit ament-python
 
@@ -9,7 +9,7 @@ RDEPENDS_${PN} = " \
     ros2-launch \
 "
 
-SRCREV = "f68222e42319864e1b8553cf1429c025588a6dfb"
+SRCREV = "6dd0652f9900ec826550f16e5a4384195b48404d"
 SRC_URI = " \
     git://git@auto-gitlab.lgsvl.net/duckietown/duckietown2.git;protocol=ssh;subpath=70-convenience-packages/duckietown_demos  \
 "

@@ -1,7 +1,7 @@
 SUMMARY = "Joy mapper package for ROS2."
 
 LICENSE = "GPLv3"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=fe8b75cf0aba647401e1038bcd69ee74"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=1e7b3bcc2e271699c77c769685058cbe"
 
 inherit ament-python
 
@@ -13,7 +13,7 @@ RDEPENDS_${PN} = " \
     python3-rpi-gpio \
 "
 
-SRCREV = "f68222e42319864e1b8553cf1429c025588a6dfb"
+SRCREV = "ea9dcbb2132fb4309d62f13f61cb8ee88c19f281"
 SRC_URI = " \
     git://git@auto-gitlab.lgsvl.net/duckietown/duckietown2.git;protocol=ssh;subpath=05-teleop/joy_mapper \
 "
