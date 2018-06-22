@@ -1,13 +1,14 @@
 [Unit]
 Description="Obstacle Joy"
 Before=webapp-mgr.service
-After=bootd.service network-online.target
+After=surface-manager-finalize.service webos-connman-adapter.service network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
 OOMScoreAdjust=-1000
 EnvironmentFile=/etc/default/duckiebot.env
+ExecStartPre=-/etc/default/ifcfg.sh
 ExecStart=/usr/bin/launch /usr/lib/python3.5/site-packages/duckietown_demos/duckietown_demos_launch/obstacle_joy_launch.py
 Restart=always
 

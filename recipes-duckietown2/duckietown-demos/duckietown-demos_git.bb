@@ -22,12 +22,14 @@ SRC_URI_append = "\
     file://obstacle-joy.service \
     file://rosbridge.service \
     file://duckiebot.env \
+    file://ifcfg.sh \
 "
 
 do_install_append() {
     install -Dm 0777 ${WORKDIR}/run_duckiebot.sh ${D}/${bindir}/run_duckiebot.sh
     install -d ${D}${sysconfdir}/default/
     install -v -m 644 ${WORKDIR}/duckiebot.env ${D}${sysconfdir}/default/duckiebot.env
+    install -v -m 755 ${WORKDIR}/ifcfg.sh ${D}${sysconfdir}/default/ifcfg.sh
     install -d ${D}${systemd_system_unitdir}
     install -v -m 644 ${WORKDIR}/rosbridge.service ${D}${systemd_system_unitdir}/rosbridge.service
     install -v -m 644 ${WORKDIR}/obstacle-joy.service ${D}${systemd_system_unitdir}/obstacle-joy.service

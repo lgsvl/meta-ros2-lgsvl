@@ -1,7 +1,7 @@
 [Unit]
 Description="Rosbridge"
-Before=webapp-mgr.service
-After=bootd.service network-online.target
+After=network-online.target obstacle-joy.service
+PartOf=obstacle-joy.service
 Wants=network-online.target
 
 [Service]
