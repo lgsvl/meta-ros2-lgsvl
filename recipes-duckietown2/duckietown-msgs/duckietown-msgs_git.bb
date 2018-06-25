@@ -12,6 +12,7 @@ DEPENDS = " \
     ros2-std-msgs \
     ros2-geometry-msgs \
     ros2-sensor-msgs \
+    ros2-visualization-msgs \
 "
 
 RDEPENDS_${PN} = " \
