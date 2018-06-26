@@ -1,8 +1,7 @@
 [Unit]
 Description="Rosbridge"
-After=network-online.target obstacle-joy.service
+After=obstacle-joy.service
 PartOf=obstacle-joy.service
-Wants=network-online.target
 
 [Service]
 Type=simple
