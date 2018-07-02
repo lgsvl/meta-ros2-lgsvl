@@ -1,0 +1,68 @@
+diff --git a/misc/create_inode.c b/misc/create_inode.c
+index c879a3ec..d01e5c9f 100644
+--- a/misc/create_inode.c
++++ b/misc/create_inode.c
+@@ -418,7 +418,7 @@ static errcode_t copy_file_range(ext2_filsys fs, int fd, ext2_file_t e2_file,
+ 			blen = fs->blocksize;
+ 			if (blen > got - bpos)
+ 				blen = got - bpos;
+-			if (memcmp(ptr, zerobuf, blen) == 0) {
++			if (zerobuf && memcmp(ptr, zerobuf, blen) == 0) {
+ 				ptr += blen;
+ 				continue;
+ 			}
+@@ -543,7 +543,7 @@ out:
+ }
+ 
+ static errcode_t copy_file(ext2_filsys fs, int fd, struct stat *statbuf,
+-			   ext2_ino_t ino)
++			   ext2_ino_t ino, int can_be_sparse)
+ {
+ 	ext2_file_t e2_file;
+ 	char *buf = NULL, *zerobuf = NULL;
+@@ -557,17 +557,19 @@ static errcode_t copy_file(ext2_filsys fs, int fd, struct stat *statbuf,
+ 	if (err)
+ 		goto out;
+ 
+-	err = ext2fs_get_memzero(fs->blocksize, &zerobuf);
+-	if (err)
+-		goto out;
++	if (can_be_sparse) {
++		err = ext2fs_get_memzero(fs->blocksize, &zerobuf);
++		if (err)
++			goto out;
+ 
+-	err = try_lseek_copy(fs, fd, statbuf, e2_file, buf, zerobuf);
+-	if (err != EXT2_ET_UNIMPLEMENTED)
+-		goto out;
++		err = try_lseek_copy(fs, fd, statbuf, e2_file, buf, zerobuf);
++		if (err != EXT2_ET_UNIMPLEMENTED)
++			goto out;
+ 
+-	err = try_fiemap_copy(fs, fd, e2_file, buf, zerobuf);
+-	if (err != EXT2_ET_UNIMPLEMENTED)
+-		goto out;
++		err = try_fiemap_copy(fs, fd, e2_file, buf, zerobuf);
++		if (err != EXT2_ET_UNIMPLEMENTED)
++			goto out;
++	}
+ 
+ 	err = copy_file_range(fs, fd, e2_file, 0, statbuf->st_size, buf,
+ 			      zerobuf);
+@@ -669,7 +671,15 @@ errcode_t do_write_internal(ext2_filsys fs, ext2_ino_t cwd, const char *src,
+ 			goto out;
+ 	}
+ 	if (LINUX_S_ISREG(inode.i_mode)) {
+-		retval = copy_file(fs, fd, &statbuf, newfile);
++		int can_be_sparse = 1;
++		const char *swap_ext = "swap";
++		char *ext = strrchr(src, '.');
++		if (ext != NULL
++                    && strncasecmp(ext + 1, swap_ext, sizeof(swap_ext)) == 0) {
++			/* .swap file can't be sparse or swapon fails */
++			can_be_sparse = 0;
++		}
++		retval = copy_file(fs, fd, &statbuf, newfile, can_be_sparse);
+ 		if (retval)
+ 			goto out;
+ 	}

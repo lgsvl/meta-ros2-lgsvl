@@ -1,0 +1,36 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index adf717a..13e00b6 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -132,6 +132,7 @@ if(${WEBOS_TARGET_DISTRO} STREQUAL "webos")
+         files/systemd/services/distro/${WEBOS_TARGET_DISTRO}/pm-log-daemon.service
+         files/systemd/services/distro/${WEBOS_TARGET_DISTRO}/pulseaudio.service
+         files/systemd/services/distro/${WEBOS_TARGET_DISTRO}/surface-manager.service
++        files/systemd/services/distro/${WEBOS_TARGET_DISTRO}/swapon.service
+         files/systemd/services/distro/${WEBOS_TARGET_DISTRO}/webapp-mgr.service
+         files/systemd/services/distro/${WEBOS_TARGET_DISTRO}/webos-bluetooth-service.service)
+ endif()
+diff --git a/files/systemd/services/distro/webos/swapon.service b/files/systemd/services/distro/webos/swapon.service
+new file mode 100644
+index 0000000..9ff7b03
+--- /dev/null
++++ b/files/systemd/services/distro/webos/swapon.service
+@@ -0,0 +1,8 @@
++[Unit]
++Description="Enables swap based on a .swap file"
++Before=surface-manager.service
++
++[Service]
++Type=simple
++ExecStart=/sbin/swapon /swapfile.swap
++Restart=no
+diff --git a/files/systemd/targets/default-webos.target b/files/systemd/targets/default-webos.target
+index 8ed0949..c0361bc 100644
+--- a/files/systemd/targets/default-webos.target
++++ b/files/systemd/targets/default-webos.target
+@@ -27,4 +27,5 @@ Wants=bootd.service \
+       sam.service \
+       surface-manager.service \
+       surface-manager-finalize.service \
++      swapon.service \
+       usbctrl.service
