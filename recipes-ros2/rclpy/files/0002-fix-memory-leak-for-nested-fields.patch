@@ -275,13 +275,14 @@ index c87f86a..347ddec 100644
      if (!pytaken_msg) {
        // the function has set the Python error
        return NULL;
-@@ -2086,7 +2136,9 @@ rclpy_take(PyObject * Py_UNUSED(self), PyObject * args)
+@@ -2086,7 +2136,10 @@ rclpy_take(PyObject * Py_UNUSED(self), PyObject * args)
  
      return pytaken_msg;
    }
 +
    // if take failed, just do nothing
 +  Py_DECREF(pymetaclass);
++  destroy_ros_message(msg);
    Py_RETURN_NONE;
  }
  
