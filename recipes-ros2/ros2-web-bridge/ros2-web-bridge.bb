@@ -54,6 +54,12 @@ do_install () {
     # Compile and install
     ${STAGING_BINDIR_NATIVE}/npm install --production --unsafe-perm --arch=${targetArch} --target-arch=${targetArch} --verbose -g --prefix=${D}${prefix}
 
+    # patch rclnodejs
+    cd ${D}${prefix}/lib/node_modules/ros2-web-bridge/node_modules/rclnodejs
+    patch -p 1 -i "${THISDIR}/files/0002-fix-new-delete-mismatch.patch"
+    patch -p 1 -i "${THISDIR}/files/0003-fix-memory-leak-in-subscription-messages.patch"
+    ${STAGING_BINDIR_NATIVE}/npm rebuild --production --unsafe-perm --arch=${targetArch} --target-arch=${targetArch} --verbose -g --prefix=${D}${prefix}
+
     rm -fr ${D}${libdir}/node_modules/ros2-web-bridge/npm-pack.sh
     rm -fr ${D}${libdir}/node_modules/ros2-web-bridge/node_modules/rclnodejs/test/
     rm -fr ${D}${libdir}/node_modules/ros2-web-bridge/node_modules/rclnodejs/scripts
