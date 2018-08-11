@@ -2,9 +2,13 @@ SUMMARY = "Intel Movidius Neural Compute SDK"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=05b1939845b405db6b10a8050e4aa40c"
 
-SRC_URI = "git://github.com/movidius/ncsdk.git;protocol=https;"
-SRCREV = "ec17dbb87ed890738be583f615c7644cfd62a3e0"
-S = "${WORKDIR}/git"
+#SRC_URI = "git://github.com/movidius/ncsdk.git;protocol=https;"
+#SRCREV = "ec17dbb87ed890738be583f615c7644cfd62a3e0"
+SRC_URI = "https://ncs-forum-uploads.s3.amazonaws.com/ncsdk/ncsdk-01_12_00_01-full/ncsdk-1.12.00.01.tar.gz"
+SRC_URI[md5sum] = "87561471aaf912f7b4bdb72e94f4ac67"
+SRC_URI[sha256sum] = "1394a1c8cdf99a83dfa90d0bf02f76a8f6f06c9401cca4a7310eb2b0197670d0"
+
+S = "${WORKDIR}/ncsdk-1.12.00.01"
 
 DEPENDS = "libusb1"
 
