@@ -9,7 +9,7 @@ RDEPENDS_${PN} = " \
     ros2-launch \
 "
 
-SRCREV = "b26efb2f5c691cbb4c74389b39105f38c833aba9"
+SRCREV = "6e3e342f2363bea10460a4acf4a004a3b3490901"
 SRC_URI = " \
     git://github.com/lgsvl/duckietown2.git;subpath=70-convenience-packages/duckietown_demos  \
 "

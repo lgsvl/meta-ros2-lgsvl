@@ -13,7 +13,7 @@ RDEPENDS_${PN} = " \
     python3-rpi-gpio \
 "
 
-SRCREV = "ea9dcbb2132fb4309d62f13f61cb8ee88c19f281"
+SRCREV = "6e3e342f2363bea10460a4acf4a004a3b3490901"
 SRC_URI = " \
     git://github.com/lgsvl/duckietown2.git;subpath=05-teleop/joy_mapper \
 "

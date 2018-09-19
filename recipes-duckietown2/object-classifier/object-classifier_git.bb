@@ -10,7 +10,7 @@ RDEPENDS_${PN} = " \
     movidius \
 "
 
-SRCREV = "f68222e42319864e1b8553cf1429c025588a6dfb"
+SRCREV = "6e3e342f2363bea10460a4acf4a004a3b3490901"
 SRC_URI = " \
     git://github.com/lgsvl/duckietown2.git;subpath=80-deep-learning/object_classifier  \
 "

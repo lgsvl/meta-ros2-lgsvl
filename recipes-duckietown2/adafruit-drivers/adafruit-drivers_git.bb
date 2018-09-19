@@ -9,7 +9,7 @@ RDEPENDS_${PN} = " \
     python3-smbus2 \
 "
 
-SRCREV = "d207167fa507eda6f9cb8f2c02627aa2dec73d2a"
+SRCREV = "6e3e342f2363bea10460a4acf4a004a3b3490901"
 SRC_URI = " \
     git://github.com/lgsvl/duckietown2.git;subpath=05-teleop/adafruit_drivers \
 "
