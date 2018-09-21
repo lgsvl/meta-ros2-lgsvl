@@ -12,7 +12,7 @@ DEPENDS = " \
 
 SRCREV = "1fdd2bf817015d3917d6654eb90c92cb6d949a9a"
 SRC_URI = " \
-    git://git@github.com/ros2/joystick_drivers.git;protocol=https;branch=ros2;subpath=joy \
+    git://git@github.com/ros2/joystick_drivers.git;protocol=https;branch=bouncy;subpath=joy \
 "
 
 # temporary to check joystick /dev/input/by-path
