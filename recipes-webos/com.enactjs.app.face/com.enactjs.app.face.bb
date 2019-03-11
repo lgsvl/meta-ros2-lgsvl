@@ -16,8 +16,8 @@ SRC_URI = " \
     ${ENACTJS_GIT_REPO}/face.git;nobranch=1; \
 "
 
-PV = "0.1.0"
-SRCREV = "f8c1110022d687510586ebc90dd0c374e3cd04e4"
+PV = "0.1.1"
+SRCREV = "71a31c374d642e91ebfe89c0b2cee4a9e81f8e72"
 
 # NOTE: We only need to bump PR if we change something OTHER than
 # PV, SRCREV or the require statement above.
